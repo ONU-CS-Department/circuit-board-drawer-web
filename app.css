@@ -1,7 +1,16 @@
 h1 {
-    color:white
+    color:white;
 }
 
 body {
-    background-color: #282828
+    background-color: #282828;
+}
+
+div {
+    color:white;
+}
+
+canvas {
+    border:1px solid white;
+    background: purple;
 }
