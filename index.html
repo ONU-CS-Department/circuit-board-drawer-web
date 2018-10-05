@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,15 +12,14 @@
         <header><h1>Welcome to the ONU Computer Science Club Circuit Board Drawer!</h1></header>
         <section><canvas id="myCanvas": width="1280" height="720"></canvas></section>
     <aside>
-            <script src="src/app.js"></script>
             <script src="line_graphic.js"></script>
-            <div><input type="checkbox" name="" value"box"> Start Node</div>
-            <div><input type="checkbox" name="cb1" value"box"> End Node</div>
-            <div><input type="checkbox" name="cb1" value"box"> Start Module</div>
-            <div><input type="checkbox" name="cb1" value"box"> End Module</div>
-            <div><input type="checkbox" name="cb1" value"box"> Make Continuous</div>
+            <div><input type="checkbox" name="" value"box" id="startNode" onclick="drawingFunction()"> Start Node</div>
+            <div><input type="checkbox" name="cb1" value"box" id="endNode" onclick="drawingFunction()"> End Node</div>
+            <div><input type="checkbox" name="cb1" value"box" id="startModule" onclick="drawingFunction()"> Start Module</div>
+            <div><input type="checkbox" name="cb1" value"box" id="endModule" onclick="drawingFunction()"> End Module</div>
+            <div><input type="checkbox" name="cb1" value"box" id="continuous" onclick="drawingFunction()"> Make Continuous</div>
             
     </aside>
-    
+    <p id="text" style="display:none">Checkbox is CHECKED!</p>
 </body>
 </html>
