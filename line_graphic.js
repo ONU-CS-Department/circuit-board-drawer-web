@@ -4,9 +4,11 @@ var ctx = canvas.getContext("2d");
 var prevX = 0;
 var prevY = 0;
 
+canvas.addEventListener("click", function(evt) {
+    drawingFunction(evt);
+});
 
-
-function drawingFunction() {
+function drawingFunction(evt) {
     var hasStartNode = document.getElementById("startNode");
     var hasEndNode = document.getElementById("endNode");
     var hasStartModule = document.getElementById("startModule");
@@ -15,12 +17,8 @@ function drawingFunction() {
     var text = document.getElementById("text");
 
     if (hasStartNode.checked == true){
-        text.style.display = "block";
         console.log("start Node");
-    } else {
-       text.style.display = "none";
     }
-
     if (hasEndModule.checked == true) {
         console.log("End Module");
     }
@@ -34,10 +32,7 @@ function drawingFunction() {
         console.log("hasEndModule");
     }
     if (isContinuous.checked == true) {
-        text.style.display = "block";
-        console.log("its working");
-        canvas.addEventListener("click", function (evt) {
-            var mousePos = getMousePos(canvas, evt);
+        var mousePos = getMousePos(canvas,evt);
              ctx.beginPath();
              ctx.lineWidth = "8";
              ctx.moveTo(prevX,prevY);
@@ -46,23 +41,18 @@ function drawingFunction() {
              ctx.stroke();
             prevX = mousePos.x;
             prevY = mousePos.y;
-        }, false);
     }
     else {
-        text.style.display = "none";
-    }
+         
+            
+         }
 }
 
-
-
-//report the mouse position on click
-
-
 //Get Mouse Position
-function getMousePos(canvas, evt) {
-    var rect = canvas.getBoundingClientRect();
-    return {
-        x: evt.clientX - rect.left,
-        y: evt.clientY - rect.top
-    };
+ function getMousePos(canvas,evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+        };
 }
