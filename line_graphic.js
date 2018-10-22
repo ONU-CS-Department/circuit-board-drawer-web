@@ -3,6 +3,7 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 var prevX = 0;
 var prevY = 0;
+i = 0;
 
 canvas.addEventListener("click", function(evt) {
     drawingFunction(evt);
@@ -16,35 +17,60 @@ function drawingFunction(evt) {
     var isContinuous = document.getElementById("continuous");
     var text = document.getElementById("text");
 
-    if (hasStartNode.checked == true){
-        console.log("start Node");
-    }
-    if (hasEndModule.checked == true) {
-        console.log("End Module");
-    }
-    if (hasEndNode.checked == true) {
-        console.log("hasEndNode");
-    }
-    if (hasStartModule.checked == true) {
-        console.log("hasStartModule");
-    }
-    if (hasEndModule.checked == true) {
-        console.log("hasEndModule");
-    }
+    var mousePos = getMousePos(canvas,evt);
+    ctx.lineWidth = "8";
+    ctx.strokeStyle="#FCFDFD";
+    ctx.fillStyle="#FCFDFD";
+
+   
+    
+    
+    
     if (isContinuous.checked == true) {
-        var mousePos = getMousePos(canvas,evt);
-             ctx.beginPath();
-             ctx.lineWidth = "8";
-             ctx.moveTo(prevX,prevY);
-             ctx.lineTo(mousePos.x,mousePos.y);
-             ctx.strokeStyle="#FCFDFD";
-             ctx.stroke();
+        if (hasStartModule.checked == true) {
+            ctx.fillRect(prevX,prevY,10,20);
+            ctx.stroke();
+            console.log("hasStartModule");
+        }
+        if (hasStartNode.checked == true){
+            ctx.beginPath();
+            ctx.arc(prevX,prevY,15,0,2*Math.PI);
+            ctx.stroke();
+            console.log("start Node");
+        }
+        ctx.beginPath(); 
+        ctx.moveTo(prevX,prevY);
+        ctx.lineTo(mousePos.x,mousePos.y);
+        ctx.stroke();
+        prevX = mousePos.x;
+        prevY = mousePos.y;
+        if (hasEndModule.checked == true) {
+            ctx.fillRect(mousePos.x,mousePos.y,10,20);
+            ctx.stroke();
+            console.log("End Module");
+        }
+        if (hasEndNode.checked == true) {
+            ctx.beginPath();
+            ctx.arc(mousePos.x,mousePos.y,15,0,2*Math.PI);
+            ctx.stroke();
+            console.log("hasEndNode");
+        }
+    }
+    //Draw normally
+    else {
+        if(i == 1) {
+            ctx.beginPath(); 
+            ctx.moveTo(prevX,prevY);
+            ctx.lineTo(mousePos.x,mousePos.y);
+            ctx.stroke();
+             
+            i = 0;
+        }
+        else {
             prevX = mousePos.x;
             prevY = mousePos.y;
-    }
-    else {
-         
-            
+            i++;
+        }  
          }
 }
 
